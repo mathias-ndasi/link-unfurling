@@ -9,7 +9,7 @@ export class AppController {
 
   @Get(':url')
   @HttpCode(HttpStatus.OK)
-  unfurlLink(@Param('url') url: string): any {
-    return this.appService.unfurlLink(url);
+  async unfurlLink(@Param('url') url: string) {
+    return await this.appService.unfurlLink(url);
   }
 }

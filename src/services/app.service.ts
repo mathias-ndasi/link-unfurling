@@ -3,18 +3,25 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 import { parseDomain, ParseResultType } from 'parse-domain';
 import * as simpleUnfurl from 'simple-unfurl';
+import { SuccessResponse } from 'src/exceptions/success-exception.filter';
+import { MysqlCacheService } from './mysql-cache.service';
 
 @Injectable()
 export class AppService {
+  constructor(private readonly mysqlCacheService: MysqlCacheService) {}
+
   async unfurlLink(url: string): Promise<any> {
     const documentObject = await this.fetchHTML(url);
-    const response = {
+    const resource = {
       title: await this.getTitle(url, documentObject),
       favicon: await this.getFavicon(url, documentObject),
       description: await this.getDescription(url, documentObject),
     };
 
-    return response;
+    // Add to resource to our cache.
+    await this.mysqlCacheService.set(url, resource);
+
+    return new SuccessResponse(resource).response();
   }
 
   private async getFavicon(
