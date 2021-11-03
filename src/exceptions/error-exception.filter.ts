@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { Constants } from 'src/enum/constants.enum';
+import { Constants } from '../enum/constants.enum';
 
 export class CustomException {
   private statusCode = HttpStatus.BAD_REQUEST;

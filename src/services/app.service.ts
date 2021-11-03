@@ -3,7 +3,7 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 import { parseDomain, ParseResultType } from 'parse-domain';
 import * as simpleUnfurl from 'simple-unfurl';
-import { SuccessResponse } from 'src/exceptions/success-exception.filter';
+import { SuccessResponse } from '../exceptions/success-exception.filter';
 import { MysqlCacheService } from './mysql-cache.service';
 
 @Injectable()

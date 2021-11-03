@@ -5,7 +5,7 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import { Constants } from 'src/enum/constants.enum';
+import { Constants } from '../enum/constants.enum';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {

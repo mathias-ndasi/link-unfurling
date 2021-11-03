@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { ExtractedLinkDetails } from 'src/dto/link-unfurling.dto';
+import { ExtractedLinkDetails } from '../dto/link-unfurling.dto';
 import { PrismaService } from './prisma.service';
 
 @Injectable()

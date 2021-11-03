@@ -1,9 +1,9 @@
 import { HttpStatus, Injectable, Logger, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
-import { Constants } from 'src/enum/constants.enum';
-import { CustomException } from 'src/exceptions/error-exception.filter';
-import { SuccessResponse } from 'src/exceptions/success-exception.filter';
-import { MysqlCacheService } from 'src/services/mysql-cache.service';
+import { Constants } from '../enum/constants.enum';
+import { CustomException } from '../exceptions/error-exception.filter';
+import { SuccessResponse } from '../exceptions/success-exception.filter';
+import { MysqlCacheService } from '../services/mysql-cache.service';
 
 @Injectable()
 export class MysqlCacheMiddleware implements NestMiddleware {
