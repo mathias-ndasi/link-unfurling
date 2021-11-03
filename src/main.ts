@@ -18,7 +18,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   // Register our global exception handler
-  app.useGlobalFilters(new AllExceptionsFilter());
+  // app.useGlobalFilters(new AllExceptionsFilter());
 
   await app.listen(process.env.PORT, () =>
     Logger.log(`Server listening on port:${process.env.PORT}`),

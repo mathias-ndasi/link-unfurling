@@ -1,5 +1,6 @@
 import { HttpStatus, Injectable, Logger, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
+import { validateUrl } from '../validations/url-validation.validation';
 import { Constants } from '../enum/constants.enum';
 import { CustomException } from '../exceptions/error-exception.filter';
 import { SuccessResponse } from '../exceptions/success-exception.filter';
@@ -15,11 +16,9 @@ export class MysqlCacheMiddleware implements NestMiddleware {
     // Validate input url.
     this.logger.log('Validating input url...');
     const url: string = req.params.url;
-    const validUrlPattern =
-      /(http(s)?:\/\/.)(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
-    const validUrl = url.match(validUrlPattern);
+    const isValidUrl = validateUrl(url);
 
-    if (validUrl == null || !validUrl) {
+    if (!isValidUrl) {
       this.logger.error('Invalid input url...');
       return new CustomException()
         .setMessage(Constants.INVALID_URL)
